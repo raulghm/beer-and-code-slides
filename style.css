@@ -1,0 +1,32 @@
+body {
+  background: linear-gradient(45deg, #1fef85 , #3c9e73);
+}
+
+.u-textCenter {
+  text-align: center !important;
+}
+
+.slide {
+  text-align: center;
+}
+
+ul {
+  text-align: left;
+}
+
+a {
+  color: #36495d;
+}
+
+code {
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+
+.u-fullImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+}

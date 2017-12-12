@@ -1,0 +1,1191 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Beer and Code</title>
+  <style type="text/css">
+    /**
+ * Styles for cleaver-vue
+ * repository: https://github.com/raulghm/cleaver-vue
+ * License: MIT LICENSE;
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900);
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 100%;
+  color: #fff;
+  background: #41b883; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #41b883 , #3c9e73); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(45deg, #41b883 , #3c9e73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.center {
+  text-align: center;
+}
+
+img.badge {
+  height: 128px;
+  width: 128px !important;
+  border-radius: 50% !important;
+}
+
+.slides {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.slides.active .slide:not(.hidden) {
+  border: 22px solid red;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  cursor: pointer;
+  display: none;
+}
+
+.slides.active .slide:hover .slide-overlay::before {
+  content: '▶';
+  text-align: center;
+  line-height: 300px;
+  font-size: 200px;
+  color: #fff;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slides.active .slide:hover .slide-overlay{
+  display: block;
+  background: rgba(0,0,0,0.5);
+}
+
+.slide-wrapper {
+  margin: 7px;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: table;
+  background-color: transparent;
+}
+
+.slide:after {
+  content: '';
+  z-index: 1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+  background-image: url(https://vuejs.org/images/logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 200%;
+  font-weight: 200;
+  line-height: 1.375;
+  overflow: hidden;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.slide-inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.slide-content img {
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.author-slide .slide-content {
+  background-image: url('img/img-me.png');
+  background-repeat: no-repeat;
+  background-position: 50% 20%;
+  background-size: 180px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 3;
+}
+
+.overview {
+  display: inline-block;
+  float: left;
+  color: rgba(255, 255, 255, 0.28);
+  margin-right: 15px;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.overview:hover {
+  color: #000;
+  cursor: pointer;
+}
+.arrow {
+  float: left;
+  height: 0;
+  width: 0;
+  margin-right: 15px;
+  border: 15px solid rgba(255, 255, 255, 0.28);
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+.arrow:hover {
+  cursor: pointer;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-right-width: 25px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-left-width: 0;
+}
+.prev:hover {
+  border-right-color: #000;
+}
+
+.next {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-right-width: 0;
+  border-bottom-color: transparent;
+  border-left-width: 25px;
+}
+.prev:hover {
+  border-left-color: #000;
+}
+
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+h1 {
+  font-size: 260%;
+  text-align: center;
+  line-height: 1.2;
+}
+h2 {
+  margin: 5px 0;
+  font-size: 190%;
+  text-align: center;
+  line-height: 1.2;
+}
+h3 {
+  margin: 0;
+  padding-bottom: 15px;
+  font-size: 140%;
+  line-height: 1.2;
+}
+ul {
+  font-weight: 200;
+  line-height: 1.375;
+  padding: 20px 0 0 60px;
+}
+blockquote {
+  padding-left: 20px;
+  margin-left: 0;
+  background: #3ba073;
+  border-left: 5px solid #36495d;
+  border-radius: 0 3px 3px 0;
+}
+blockquote p {
+  padding: .5em;
+  color: #fff;
+}
+.left {
+  float: left;
+  width: 48%;
+}
+
+.right {
+  float: right;
+  width: 48%;
+}
+
+.author h1 {
+  margin-bottom: 30px;
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+}
+
+.author h3 {
+  font-size: 95%;
+  font-weight: 100;
+  text-align: center;
+  border: none;
+}
+
+.author h3.twitter::before {
+  content: 'Twitter: ';
+}
+
+.author h3.github::before {
+  content: 'Github: ';
+}
+
+.author h3.email::before {
+  content: 'Email: ';
+}
+
+.author h3.url::before {
+  content: 'Web: ';
+}
+
+a {
+  text-decoration: none;
+  color: #ffce08;
+}
+
+a:hover {
+  color: #F8DC3D;
+  border-bottom: 1px solid #F8DC3D;
+}
+
+hr {
+  border: 1px solid #272822;
+}
+
+pre {
+  font-size: 75%;
+  line-height: 1.3;
+  background-color: rgba(0,0,0,.5);
+}
+
+table td,
+table th {
+  padding-right: 3em;
+  text-align: left;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  z-index: 2;
+}
+
+.progress-bar {
+  height: 3px;
+  width: 0;
+  background-color: #ff9c08;
+  -webkit-transition: width .15s ease-out;
+  transition: width .15s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Code Highlighting */
+code {
+  padding: .1em .35em;
+  background-color: #0f291e;
+  border-radius: 3px;
+}
+
+pre code {
+  display: block;
+  padding: .5em;
+  font-family: 'Inconsolata';
+  font-weight: 400;
+  overflow-y: hidden;
+}
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+code.lang-bash-blank{
+  background: #000;
+  color: #fff!important;
+}
+code.lang-bash-blank-small{
+  background: #000;
+  color: #fff!important;
+  font-size: 0.45em;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 6px;
+  box-shadow: inset 0 -4px 0 #bbb;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+/* Ocean Dark Theme */
+/* https://github.com/gavsiu */
+/* Original theme - https://github.com/chriskempson/base16 */
+
+/* Ocean Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #65737e;
+}
+
+/* Ocean Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #bf616a;
+}
+
+/* Ocean Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #d08770;
+}
+
+/* Ocean Yellow */
+.hljs-attribute {
+  color: #ebcb8b;
+}
+
+/* Ocean Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #a3be8c;
+}
+
+/* Ocean Blue */
+.hljs-title,
+.hljs-section {
+  color: #8fa1b3;
+}
+
+/* Ocean Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #b48ead;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b303b;
+  color: #c0c5ce;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+
+/* Responsiveness */
+@media (max-width: 850px) {
+  body {
+    font-size: 70%;
+  }
+
+  .slide {
+    padding: 30px;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  .prev,
+  .prev:hover {
+    border-right-color: rgba(135, 135, 135, .5);
+  }
+
+  .next,
+  .next:hover {
+    border-left-color: rgba(135, 135, 135, .5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    overflow: hidden;
+    font-size: 50%;
+  }
+
+  .slide {
+    padding: 10px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+  }
+
+  body {
+    float: none !important;
+    padding: 0;
+    margin: 0 auto !important;
+    overflow: visible;
+    font-size: 52%;
+    background: none !important;
+    border: 0;
+  }
+
+  .progress,
+  .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+    border: 1px solid #222;
+
+  }
+
+  .slide:nth-child(even) {
+    page-break-before: always;
+  }
+}
+
+
+/*custom*/
+#slide-1 h1 {
+  font-size: 300%;
+}
+
+body {
+  background: linear-gradient(45deg, #1fef85 , #3c9e73);
+}
+
+.u-textCenter {
+  text-align: center !important;
+}
+
+.slide {
+  text-align: center;
+}
+
+ul {
+  text-align: left;
+}
+
+a {
+  color: #36495d;
+}
+
+code {
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+
+.u-fullImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+}
+
+  </style>
+    <script async src="http://localhost:35729/livereload.js"></script>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+<div class="slides">
+    <div class="slide-wrapper">
+      <div class="slide" id="slide-1">
+        <div data-id="1" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="single-page-applications-con-vue">Single Page Applications con Vue</h1>
+<div class="u-textCenter">
+  <code>new Vue({
+    el: &#39;#app&#39;,
+    data: {
+      message: &#39;Hello Vue!&#39;
+    }
+  })</code>
+</div></div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-2">
+        <div data-id="2" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="-qui-n-soy-">¿Quién soy? 👨🏻‍🔧</h1>
+<p><code>&lt;raul/&gt;</code></p>
+<blockquote>
+<p>Me apasiona aprender, la web y el desarrollo.</p>
+</blockquote>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-3">
+        <div data-id="3" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="-por-qu-vue-">¿Por qué Vue?</h1>
+<h2 id="porque-es">Porque es</h2>
+<p><code>Vue-nísimo</code></p>
+<h1 id="-">😆</h1>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-4">
+        <div data-id="4" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="complejidades-">Complejidades 😮</h1>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-5">
+        <div data-id="5" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="inherente-vs-instrumental-">Inherente vs Instrumental 🛠</h1>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-6">
+        <div data-id="6" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="-qu-es-vue-">¿Qué es Vue?</h1>
+<p><code>(pronounced /vjuː/, like view)</code></p>
+<h3 id="progressive-framework-for-building-user-interfaces-">Progressive framework for building user interfaces.</h3>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-7">
+        <div data-id="7" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="conceptos-de-vue-">Conceptos de Vue 🎯</h1>
+<ul>
+<li>Un <em>core</em></li>
+<li>Basado en <em>MV</em></li>
+<li>Reactividad <em>Virtual DOM</em></li>
+<li>Orientado a componentes</li>
+<li>Open Source y creciente ecosistema</li>
+</ul>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-8">
+        <div data-id="8" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><p><img src="img/1.png" style="position: fixed;top:-180px;left:0;width:100%;"></p>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-9">
+        <div data-id="9" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="-porque-elegir-vue-">¿Porque elegir Vue? 🤔</h1>
+<p><img src="https://cdn.worldvectorlogo.com/logos/angular-icon.svg" style="max-height: 200px; width: 200px; display: inline-block;">
+<img src="https://www.shareicon.net/download/2016/07/10/119874_apps_512x512.png" style="max-height: 200px; width: 200px; display: inline-block;">
+<img src="https://vuejs.org/images/logo.png" style="max-height: 200px; width: 200px; display: inline-block;"></p>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-10">
+        <div data-id="10" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><p><img src="img/usage.png" alt="usage" class="u-fullImage"></p>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-11">
+        <div data-id="11" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="spa">SPA</h1>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-12">
+        <div data-id="12" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="conceptos-sobre-spa">Conceptos sobre SPA</h1>
+<blockquote>
+<p>Todo funciona en un sola página.</p>
+</blockquote>
+<ul>
+<li>Todo se carga una sola vez (HTML/CSS/JS)</li>
+<li>La experiencia de usuario es más fluida (no refresh)</li>
+<li>Se optimizan los recursos entregados</li>
+<li>En el concepto nos permite separar recursos cliente/servidor</li>
+</ul>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-13">
+        <div data-id="13" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="hello-world">Hello World</h1>
+<p>html</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/vue"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+  {{ message }}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>javascript</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">el</span>: <span class="hljs-string">'#app'</span>,
+
+  <span class="hljs-attr">data</span>: {
+    <span class="hljs-attr">message</span>: <span class="hljs-string">''</span>,
+  },
+})
+</code></pre>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-14">
+        <div data-id="14" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="-que-necesitamos-para-seguir-">¿Que necesitamos para seguir? ✨</h1>
+<ul>
+<li>Conocimientos de Javascript</li>
+<li>Algo de ES6</li>
+<li>Terminal</li>
+<li>Node + Npm</li>
+<li>💪 Ganas</li>
+</ul>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-15">
+        <div data-id="15" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="instalaci-n-y-primeros-pasos-">Instalación y primeros pasos 🏁</h1>
+<pre><code>$ npm install -g vue-cli
+$ vue init webpack my-project
+$ cd my-project
+$ npm install
+$ npm run dev // npm run build
+</code></pre><p>↪️ <a href="https://github.com/vuejs-templates">https://github.com/vuejs-templates</a></p>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-16">
+        <div data-id="16" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="estructura">Estructura</h1>
+<pre><code>├── build/                      # webpack config files
+│   └── ...
+├── config/
+│   ├── index.js                # main project config
+│   └── ...
+├── src/
+│   ├── main.js                 # app entry file
+│   ├── App.vue                 # main app component
+│   ├── components/             # ui components
+│   │   └── ...
+│   └── assets/                 # module assets (processed by webpack)
+│       └── ...
+├── static/                     # pure static assets (directly copied)
+├── test/                       # unit tests
+├── .babelrc                    # babel config
+├── .editorconfig               # indentation, spaces/tabs and similar settings for your editor
+├── .eslintrc.js                # eslint config
+├── .eslintignore               # eslint ignore rules
+├── .gitignore                  # sensible defaults for gitignore
+├── .postcssrc.js               # postcss config
+├── index.html                  # index.html template
+├── package.json                # build scripts and dependencies
+└── README.md                   # Default README file
+</code></pre></div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-17">
+        <div data-id="17" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="componente">Componente</h1>
+<p><img src="https://vuejs.org/images/vue-component.png" alt=""></p>
+<p>💡 Lifecycle <a href="https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram">https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram</a></p>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-18">
+        <div data-id="18" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h2 id="demo">Demo</h2>
+<h1 id="vuedium-">Vuedium ✨</h1>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-19">
+        <div data-id="19" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="vuedium-v0-1">Vuedium v0.1</h1>
+<ul>
+<li>API + CRUD</li>
+<li>Components <em>para diferentes acciones</em></li>
+<li>Mostrar historias recientes</li>
+<li>Crear historia</li>
+<li>Editar historia</li>
+</ul>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-20">
+        <div data-id="20" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="deploy-netlify">Deploy + Netlify</h1>
+<ul>
+<li>Netlify CDN</li>
+<li>One-Click SSL</li>
+<li>Continuous Deployment</li>
+<li>Gradual Migration</li>
+<li>Infinite Scale</li>
+<li>Prerendering</li>
+<li>Atomic Deploys</li>
+<li>Instant Cache Invalidation</li>
+<li>Instant Rollbacks</li>
+<li>CLI</li>
+<li>...</li>
+</ul>
+<pre><code>$ npm run build
+</code></pre></div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-21">
+        <div data-id="21" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="demo-deployment">Demo deployment</h1>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-22">
+        <div data-id="22" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="algunos-tips">Algunos tips</h1>
+<ul>
+<li>Cada componente debe resolver una sola cosa (y lo debe hacer bien)</li>
+<li>Separar bien las responsabilidades (dependencias, librerias)</li>
+<li>Optimiza los recursos (gzip, minify, cdn, cache, concatenation, images)</li>
+<li>Usar prerendering o ssr donde puedas</li>
+<li>Indica siempre al usuario los estados y que esta pasando (incluso en segundo plano)</li>
+<li>Si te interesa el SEO quizas tu enfoque es SSR</li>
+</ul>
+<blockquote>
+<p>Si quieres ir mas allá, aprende sobre PWA... ✨</p>
+</blockquote>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-23">
+        <div data-id="23" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="recursos-tiles">Recursos útiles</h1>
+<ul>
+<li><a href="https://vuejs.org">https://vuejs.org</a></li>
+<li><a href="https://github.com/vuejs/awesome-vue">https://github.com/vuejs/awesome-vue</a></li>
+<li><a href="https://vuecasts.com">https://vuecasts.com</a> (Free)</li>
+</ul>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden" id="slide-24">
+        <div data-id="24" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><h1 id="gracias-preguntas-">Gracias, ¿preguntas?</h1>
+</div>
+        </section>
+      </div>
+    </div>
+    <div class="slide-wrapper">
+      <div class="slide hidden author-slide" id="slide-25">
+        <div data-id="25" class="slide-overlay"></div>
+        <section class="slide-content">
+          <div class="slide-inner"><div class="author">
+  <h1 class="name">Raúl Hernández</h1>
+    <h3 class="twitter">
+      <a href="http://twitter.com/@raulghm">@raulghm</a>
+    </h3>
+    <h3 class="url">
+      <a href="https://raulghm.com">https://raulghm.com</a>
+    </h3>
+    <h3 class="email">
+      <a href="mailto:raulghm@gmail.com">raulghm@gmail.com</a>
+    </h3>
+</div>
+</div>
+        </section>
+      </div>
+    </div>
+</div>
+
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="overview">☷</div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  var $fragments = document.querySelectorAll('#slide-' + position + ' .fragment');
+  var fragmentsFinished = false;
+  if ($fragments.length) {
+    if (n > 0) {
+      var $f = document.querySelectorAll('#slide-' + position + ' .fragment.hidden');
+      if (!$f.length) fragmentsFinished = true;
+      else $f[0].classList.remove('hidden');
+    } else {
+      var $f = document.querySelectorAll('#slide-' + position + ' .fragment:not(.hidden)');
+      if (!$f.length) fragmentsFinished = true;
+      else $f[$f.length - 1].classList.add('hidden');
+    }
+  } else {
+    fragmentsFinished = true;
+  }
+
+  if (fragmentsFinished) {
+    /* Positions are 1-indexed, so we need to add and subtract 1 */
+    var nextPosition = (position - 1 + n) % numSlides + 1;
+
+    /* Normalize nextPosition in-case of a negative modulo result */
+    nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+    document.getElementById('slide-' + position).classList.add('hidden');
+    document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+    updateProgress();
+    updateURL();
+    updateTabIndex();
+  }
+
+}
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  try {
+    window.history.replaceState({}, null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
+  }
+}
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+    document.mozFullScreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+    docElem.requestFullscreen ||
+    docElem.msRequestFullscreen ||
+    docElem.mozRequestFullScreen ||
+    docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+    doc.exitFullscreen ||
+    doc.msExitFullscreen ||
+    doc.mozCancelFullScreen ||
+    doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function(e) {
+    if(e.target.tagName.toLowerCase() === 'textarea') return;
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    } else if (kc === 27) {
+      toggleOverview();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function(e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function(e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+  if (document.querySelector('.overview')) {
+    document.querySelector('.overview').onclick = function(e) {
+      toggleOverview();
+    }
+  }
+  var $overlays = document.querySelectorAll('.slide-overlay');
+  [].forEach.call($overlays, function($overlay) {
+    $overlay.onclick = function(event) {
+      navigate(parseInt(event.target.dataset.id) - currentPosition());
+      toggleOverview();
+    }
+  });
+
+  var $fragments = document.querySelectorAll('.fragment');
+  [].forEach.call($fragments, function($fragment) {
+    $fragment.classList.add('hidden');
+  });
+
+});
+
+function toggleOverview() {
+  if (window.$style !== undefined) {
+    window.$style.remove();
+    delete window.$style;
+    document.querySelector('.slides').classList.remove('active');
+  } else {
+    var $slides = document.querySelector('.slides');
+    $slides.classList.add('active');
+    var slidesList = document.querySelectorAll('.slide-wrapper');
+
+    var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
+
+    window.$style = document.createElement('style');
+    window.$style.innerHTML = '.slide-wrapper {width: ' + (x * 0.25) + 'px; height: ' + (y * 0.25) + 'px; } body .slide {width: ' + x + 'px; height: ' + y + 'px; position: relative; transform: scale(0.25,0.25); transform-origin: 0 0; } .slide.hidden{display: block; }';
+
+    document.getElementsByTagName('head')[0].appendChild(window.$style);
+  }
+}
+  </script>
+</body>
+</html>
