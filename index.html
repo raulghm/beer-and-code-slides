@@ -11,7 +11,7 @@
  * License: MIT LICENSE;
  */
 
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900);
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
 
 html,
@@ -27,8 +27,8 @@ body {
   font-size: 100%;
   color: #fff;
   background: #41b883; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #41b883 , #3c9e73); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(45deg, #41b883 , #3c9e73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(45deg, #1fef85 , #3c9e73); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(45deg, #1fef85 , #3c9e73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .center {
@@ -211,7 +211,7 @@ img.badge {
 h1,
 h2,
 h3 {
-  font-weight: 700;
+  font-weight: 300;
 }
 h1 {
   font-size: 260%;
@@ -288,12 +288,14 @@ blockquote p {
 
 a {
   text-decoration: none;
-  color: #ffce08;
-}
-
-a:hover {
-  color: #F8DC3D;
-  border-bottom: 1px solid #F8DC3D;
+  padding: 0.35em 1em;
+  border-radius: 2em;
+  display: inline-block;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+  border: 1px solid #4fc08d;
+  background-color: #fff;
+  color: #42b983;
 }
 
 hr {
@@ -325,7 +327,6 @@ table th {
   height: 3px;
   width: 0;
   background-color: #ff9c08;
-  -webkit-transition: width .15s ease-out;
   transition: width .15s ease-out;
 }
 
@@ -579,7 +580,10 @@ ul {
 }
 
 a {
-  color: #36495d;
+  color: #fff;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
 }
 
 code {
@@ -596,7 +600,6 @@ code {
 }
 
   </style>
-    <script async src="http://localhost:35729/livereload.js"></script>
 </head>
 <body>
     <div class="progress">
@@ -626,9 +629,6 @@ code {
         <section class="slide-content">
           <div class="slide-inner"><h1 id="-qui-n-soy-">¿Quién soy? 👨🏻‍🔧</h1>
 <p><code>&lt;raul/&gt;</code></p>
-<blockquote>
-<p>Me apasiona aprender, la web y el desarrollo.</p>
-</blockquote>
 </div>
         </section>
       </div>
@@ -705,8 +705,8 @@ code {
         <section class="slide-content">
           <div class="slide-inner"><h1 id="-porque-elegir-vue-">¿Porque elegir Vue? 🤔</h1>
 <p><img src="https://cdn.worldvectorlogo.com/logos/angular-icon.svg" style="max-height: 200px; width: 200px; display: inline-block;">
-<img src="https://www.shareicon.net/download/2016/07/10/119874_apps_512x512.png" style="max-height: 200px; width: 200px; display: inline-block;">
-<img src="https://vuejs.org/images/logo.png" style="max-height: 200px; width: 200px; display: inline-block;"></p>
+<img src="https://vuejs.org/images/logo.png" style="max-height: 200px; width: 200px; display: inline-block;">
+<img src="https://www.shareicon.net/download/2016/07/10/119874_apps_512x512.png" style="max-height: 200px; width: 200px; display: inline-block;"></p>
 </div>
         </section>
       </div>
@@ -724,7 +724,10 @@ code {
       <div class="slide hidden" id="slide-11">
         <div data-id="11" class="slide-overlay"></div>
         <section class="slide-content">
-          <div class="slide-inner"><h1 id="spa">SPA</h1>
+          <div class="slide-inner"><h1 id="spa-">SPA 📄</h1>
+<blockquote>
+<p>Single Page Applications</p>
+</blockquote>
 </div>
         </section>
       </div>
@@ -735,13 +738,13 @@ code {
         <section class="slide-content">
           <div class="slide-inner"><h1 id="conceptos-sobre-spa">Conceptos sobre SPA</h1>
 <blockquote>
-<p>Todo funciona en un sola página.</p>
+<p>Todo en un sola página.</p>
 </blockquote>
 <ul>
 <li>Todo se carga una sola vez (HTML/CSS/JS)</li>
 <li>La experiencia de usuario es más fluida (no refresh)</li>
 <li>Se optimizan los recursos entregados</li>
-<li>En el concepto nos permite separar recursos cliente/servidor</li>
+<li>Separación cliente/servidor</li>
 </ul>
 </div>
         </section>
@@ -863,10 +866,11 @@ $ npm run dev // npm run build
           <div class="slide-inner"><h1 id="vuedium-v0-1">Vuedium v0.1</h1>
 <ul>
 <li>API + CRUD</li>
-<li>Components <em>para diferentes acciones</em></li>
-<li>Mostrar historias recientes</li>
+<li>Components <em>para diferentes vistas</em></li>
+<li>Mostrar historias</li>
 <li>Crear historia</li>
 <li>Editar historia</li>
+<li>Mostrar eventos</li>
 </ul>
 </div>
         </section>
@@ -932,7 +936,8 @@ $ npm run dev // npm run build
 <ul>
 <li><a href="https://vuejs.org">https://vuejs.org</a></li>
 <li><a href="https://github.com/vuejs/awesome-vue">https://github.com/vuejs/awesome-vue</a></li>
-<li><a href="https://vuecasts.com">https://vuecasts.com</a> (Free)</li>
+<li><a href="https://github.com/gustavonecore/vuedium-api">https://github.com/gustavonecore/vuedium-api</a></li>
+<li><a href="https://github.com/raulghm/vuedium">https://github.com/raulghm/vuedium</a></li>
 </ul>
 </div>
         </section>

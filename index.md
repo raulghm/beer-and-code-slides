@@ -25,9 +25,8 @@ style: style.css
 --
 
 # ¿Quién soy? 👨🏻‍🔧
-`<raul/>`
 
-> Me apasiona aprender, la web y el desarrollo.
+`<raul/>`
 
 --
 
@@ -73,8 +72,8 @@ style: style.css
 # ¿Porque elegir Vue? 🤔
 
 <img src="https://cdn.worldvectorlogo.com/logos/angular-icon.svg" style="max-height: 200px; width: 200px; display: inline-block;">
-<img src="https://www.shareicon.net/download/2016/07/10/119874_apps_512x512.png" style="max-height: 200px; width: 200px; display: inline-block;">
 <img src="https://vuejs.org/images/logo.png" style="max-height: 200px; width: 200px; display: inline-block;">
+<img src="https://www.shareicon.net/download/2016/07/10/119874_apps_512x512.png" style="max-height: 200px; width: 200px; display: inline-block;">
 
 --
 
@@ -82,17 +81,18 @@ style: style.css
 
 --
 
-# SPA
+# SPA 📄
+> Single Page Applications
 
 --
 
 # Conceptos sobre SPA
-> Todo funciona en un sola página.
+> Todo en un sola página.
 
 * Todo se carga una sola vez (HTML/CSS/JS)
 * La experiencia de usuario es más fluida (no refresh)
 * Se optimizan los recursos entregados
-* En el concepto nos permite separar recursos cliente/servidor
+* Separación cliente/servidor
 
 --
 
@@ -188,10 +188,11 @@ $ npm run dev // npm run build
 # Vuedium v0.1
 
 * API + CRUD
-* Components _para diferentes acciones_
-* Mostrar historias recientes
+* Components _para diferentes vistas_
+* Mostrar historias
 * Crear historia
 * Editar historia
+* Mostrar eventos
 
 --
 
@@ -235,6 +236,8 @@ $ npm run build
 
 * https://vuejs.org
 * https://github.com/vuejs/awesome-vue
+* https://github.com/gustavonecore/vuedium-api
+* https://github.com/raulghm/vuedium
 
 --
 
