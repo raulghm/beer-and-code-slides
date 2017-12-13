@@ -30,15 +30,6 @@ style: style.css
 
 --
 
-# ¿Por qué Vue?
-
-## Porque es
-`Vue-nísimo`
-
-# 😆
-
---
-
 # Complejidades 😮
 
 --
@@ -209,13 +200,6 @@ $ npm run dev // npm run build
 * Instant Rollbacks
 * CLI
 * ...
-
-```
-$ npm run build
-```
---
-
-# Demo deployment
 
 --
 
